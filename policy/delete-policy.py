@@ -29,11 +29,6 @@ payload = {
 
 }
 
-f = open("app-policy.json","r")
-app_policy = json.loads(f.read())
-f.close()
-
-#print(app_policy)
 
 response = requests.get(console_url+"/api/v1/policies/runtime/app-embedded", headers=pccHeaders)
 
