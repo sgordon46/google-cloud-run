@@ -46,9 +46,11 @@ mv $DIR/Dockerfile $DIR/Dockerfile.orig
 
 unzip $DIR/app_embedded_embed_app-name.zip -d $DIR
 
+gcloud artifacts repositories create $REPO --location us-central1 --repository-format=docker --quiet #--async
 
-docker build -t $IMAGE $DIR/.
 
+docker build -t us-central1-docker.pkg.dev/project1-366201/$REPO/$IMAGE:latest $DIR/.
 
+docker push us-central1-docker.pkg.dev/project1-366201/$REPO/$IMAGE:latest
 
 
