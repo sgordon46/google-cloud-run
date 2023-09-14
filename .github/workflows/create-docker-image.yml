@@ -6,8 +6,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          gcloud auth configure-docker -q
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+  
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
 
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content
