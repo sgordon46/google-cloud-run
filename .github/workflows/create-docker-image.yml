@@ -1,6 +1,6 @@
 name: "Docker-Image-Apply-Manual"
 
-on: workflow_dispatch
+on: push
 
 jobs:
   build:
@@ -10,5 +10,5 @@ jobs:
         uses: actions/checkout@v2 # checkout the repository content
 
       - name: execute sh Create Docker image
-        run: create-docker-image.sh
+        run: ./create-docker-image.sh
 
