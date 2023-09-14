@@ -1,0 +1,26 @@
+name: "Terraform-Apply-Manual"
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # install the python version needed
+
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r policy/requirements.txt
+
+      - name: execute py Collections Script 
+        run: python policy/create-collection.py
+
+      - name: execute py Policy Script 
+        run: python policy/create-policy.py

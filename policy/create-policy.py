@@ -29,7 +29,7 @@ payload = {
 
 }
 
-f = open("app-policy.json","r")
+f = open("policy/app-policy.json","r")
 app_policy = json.loads(f.read())
 f.close()
 
