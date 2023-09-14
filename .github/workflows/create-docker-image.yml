@@ -1,0 +1,14 @@
+name: "Docker-Image-Apply-Manual"
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content
+
+      - name: execute sh Create Docker image
+        run: create-docker-image.sh
+
