@@ -5,7 +5,7 @@
   - Terraform
 
 ## Deployments
- - terraform destroy --auto-approve
+ - terraform destroy -auto-approve
  - terraform apply -auto-approve
 
 
