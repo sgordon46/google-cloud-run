@@ -42,5 +42,5 @@ jobs:
 
 
       - name: Deploy image to Google Cloud Run
-        run: gcloud run deploy my-tomcat-2023 --image=us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest --platform managed --concurrency 1
+        run: gcloud run deploy my-tomcat-2023 --region us-central1 --image=us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest --platform managed --concurrency 1
   
