@@ -3,6 +3,8 @@
 REPO=my-tomcat-2023
 IMAGE=my-tomcat-image-2023
 DIR=django_hl7_rest_api
+APPID=my-tomcat-app-embedded
+
 
 PCC_USER="f0f68363-a032-47e4-88d7-055a7e5b819d"
 PCC_PASS="HZ8uaAjrvy76jUzN3QB1TIi2eVk="
@@ -17,7 +19,6 @@ token=$(curl -sSLk -d "$json_auth_data" -H 'content-type: application/json' "$PC
 echo -e $token
 
 #The following variables can be set to customize the embedded function 
-APPID=$REPO
 DATA="/data"
 
 #FILE="$(<Dockerfile)"
