@@ -8,7 +8,7 @@ jobs:
   build:
 
     env:
-      application_name: "my-tomcat-app-embedded"
+      application_name: "embedded-my-tomcat-app"
       PCC_API: ${{ secrets.PCC_API }}
       PCC_KEY: ${{ secrets.PCC_KEY }}
       PCC_SEC: ${{ secrets.PCC_SEC }}
