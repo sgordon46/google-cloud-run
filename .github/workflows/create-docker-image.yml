@@ -25,8 +25,8 @@ jobs:
           service_account: 'sample-google-cloud-run@project1-366201.iam.gserviceaccount.com'
 
 
-      - name: 'Create Repo in Artifact Registry'
-        run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet 
+      # - name: 'Create Repo in Artifact Registry'
+      #   run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet 
   
 
 
