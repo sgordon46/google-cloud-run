@@ -1,7 +1,10 @@
-name: "Workflow Create"
+name: "Workflow Delete"
 
 #on: push
 on: workflow_dispatch
+
+env:
+  application_name: "my-tomcat-app-embedded"
 
 jobs:
   build:

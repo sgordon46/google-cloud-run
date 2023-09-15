@@ -3,6 +3,9 @@ name: "Workflow Create"
 #on: push
 on: workflow_dispatch
 
+env:
+  application_name: "my-tomcat-app-embedded"
+
 jobs:
   build:
 
@@ -16,7 +19,7 @@ jobs:
 
       - name: checkout repo content
         uses: actions/checkout@v3 # checkout the repository content
-        
+
       - name: setup python
         uses: actions/setup-python@v4
         with:

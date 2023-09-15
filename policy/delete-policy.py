@@ -1,11 +1,11 @@
 import requests
-import json
+import os
 
-console_url   = "https://us-west1.cloud.twistlock.com/us-4-161024557"
-access_key     = "f0f68363-a032-47e4-88d7-055a7e5b819d"
-secret_key    = "HZ8uaAjrvy76jUzN3QB1TIi2eVk="
+console_url = os.getenv("PCC_API")
+access_key = os.getenv("PCC_KEY")
+secret_key = os.getenv("PCC_SEC")
 
-application_name = "my-tomcat-app-embedded"
+application_name = os.getenv("application_name")
 
 payload = {
     'username':access_key,
@@ -38,7 +38,7 @@ new_policy = original_policy
 i=0
 match=None
 for r in new_policy["rules"]:
-    if r["name"] == "my-tomcat-app-embedded":
+    if r["name"] == application_name:
         match=i
     i+=1    
 
