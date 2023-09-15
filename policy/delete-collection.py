@@ -13,7 +13,6 @@ payload = {
 }
 
 
-
 # Generate a Token for access to Prisma Cloud Compute.
 TOKEN = requests.post(console_url+'/api/v1/authenticate',json=payload).json()['token']
 

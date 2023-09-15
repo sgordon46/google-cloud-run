@@ -36,7 +36,7 @@ app_policy = json.loads(f.read())
 f.close()
 
 app_policy["name"] = application_name
-app_policy["collections"]["appIDs"] = [application_name+"*"]
+app_policy["collections"]["appIDs"] = "["+application_name+"*]"
 app_policy["collections"]["name"] = application_name
 app_policy["collections"]["description"] = application_name
 
