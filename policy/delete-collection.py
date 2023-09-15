@@ -1,11 +1,11 @@
 import requests
 import os
 
-console_url = os.getenv("PCC_API")
-access_key = os.getenv("PCC_KEY")
-secret_key = os.getenv("PCC_SEC")
+console_url = os.environ("PCC_API")
+access_key = os.environ("PCC_KEY")
+secret_key = os.environ("PCC_SEC")
 
-application_name = os.getenv("application_name")
+application_name = os.environ("application_name")
 
 payload = {
     'username': access_key,
