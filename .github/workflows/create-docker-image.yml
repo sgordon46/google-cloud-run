@@ -34,7 +34,7 @@ jobs:
         run: docker build -t us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest django_hl7_rest_api/.
 
       - name: credential helper
-        run: gcloud auth configure-docker -q
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: Push docker image to Repo
         run: docker push us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest
