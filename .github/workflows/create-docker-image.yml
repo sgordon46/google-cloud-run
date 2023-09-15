@@ -14,14 +14,14 @@ jobs:
     steps:
 
       - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content
+        uses: actions/checkout@v3 # checkout the repository content
 
 
       - name: 'Authenticate to Google Cloud'
         id: 'gcp-auth'
         uses: 'google-github-actions/auth@v1'
         with:
-          workload_identity_provider: 'projects/project1-366201/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          workload_identity_provider: 'projects/Project1/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
           service_account: 'google-cloud-run@project1-366201.iam.gserviceaccount.com'
          
       - name: 'Create Repo in Artifact Registry'
