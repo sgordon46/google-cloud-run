@@ -42,15 +42,16 @@ echo -e "Generating embedded source file "
 #Generate protected task
 curl -sSLk   -H "Authorization: Bearer ${token}" "${PCC_URL}/api/v1/defenders/app-embedded" -X POST --data-raw "$(generate_post_data)" --output $DIR/app_embedded_embed_app-name.zip 
 
-mv $DIR/Dockerfile $DIR/Dockerfile.orig
+#mv $DIR/Dockerfile $DIR/Dockerfile.orig
 
 unzip $DIR/app_embedded_embed_app-name.zip -d $DIR
 
-gcloud artifacts repositories create $REPO --location us-central1 --repository-format=docker --quiet #--async
+
+#gcloud artifacts repositories create $REPO --location us-central1 --repository-format=docker --quiet #--async
 
 
-docker build -t us-central1-docker.pkg.dev/project1-366201/$REPO/$IMAGE:latest $DIR/.
+#docker build -t us-central1-docker.pkg.dev/project1-366201/$REPO/$IMAGE:latest $DIR/.
 
-docker push us-central1-docker.pkg.dev/project1-366201/$REPO/$IMAGE:latest
+#docker push us-central1-docker.pkg.dev/project1-366201/$REPO/$IMAGE:latest
 
 

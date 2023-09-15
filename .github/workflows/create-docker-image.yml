@@ -28,7 +28,8 @@ jobs:
       # - name: 'Create Repo in Artifact Registry'
       #   run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet 
   
-
+      - name: execute sh Create Docker image
+        run: ./create-docker-image.sh
 
       - name: Build docker Image
         run: docker build -t us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest django_hl7_rest_api/.
@@ -43,6 +44,5 @@ jobs:
 
 
 
-      # - name: execute sh Create Docker image
-      #   run: ./create-docker-image.sh
+
 
