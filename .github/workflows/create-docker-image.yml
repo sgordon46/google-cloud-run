@@ -25,8 +25,8 @@ jobs:
           service_account: 'sample-google-cloud-run@project1-366201.iam.gserviceaccount.com'
 
 
-      # - name: 'Create Repo in Artifact Registry'
-      #   run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet 
+      - name: 'Create Repo in Artifact Registry'
+        run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet 
   
       - name: execute sh Create Docker image
         run: ./create-docker-image.sh
@@ -41,8 +41,6 @@ jobs:
         run: docker push us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest
 
 
-
-
-
-
-
+      - name: Deploy image to Google Cloud Run
+        run: gcloud run deploy --image=us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest --platform managed --concurrency 1
+  
