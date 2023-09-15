@@ -46,7 +46,7 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           workload_identity_provider: 'projects/917516087101/locations/global/workloadIdentityPools/sample-google-cloud-run/providers/sample-google-cloud-run-provider'
-          service_account: ${{service_account}}
+          service_account: '${{env.service_account}}'
 
 
       - name: 'Create Repo in Artifact Registry'
