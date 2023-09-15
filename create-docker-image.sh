@@ -6,9 +6,9 @@ DIR=django_hl7_rest_api
 APPID=my-tomcat-app-embedded
 
 
-PCC_USER="f0f68363-a032-47e4-88d7-055a7e5b819d"
-PCC_PASS="HZ8uaAjrvy76jUzN3QB1TIi2eVk="
-PCC_URL="https://us-west1.cloud.twistlock.com/us-4-161024557"
+PCC_USER=$PCC_KEY
+PCC_PASS=$PCC_SEC
+PCC_URL=$PCC_API
 PCC_SAN="us-west1.cloud.twistlock.com"
 
 
@@ -21,7 +21,6 @@ echo -e $token
 #The following variables can be set to customize the embedded function 
 DATA="/data"
 
-#FILE="$(<Dockerfile)"
 
 generate_post_data()
 {
@@ -48,11 +47,6 @@ curl -sSLk   -H "Authorization: Bearer ${token}" "${PCC_URL}/api/v1/defenders/ap
 unzip -o $DIR/app_embedded_embed_app-name.zip -d $DIR
 
 
-#gcloud artifacts repositories create $REPO --location us-central1 --repository-format=docker --quiet #--async
 
-
-#docker build -t us-central1-docker.pkg.dev/project1-366201/$REPO/$IMAGE:latest $DIR/.
-
-#docker push us-central1-docker.pkg.dev/project1-366201/$REPO/$IMAGE:latest
 
 
