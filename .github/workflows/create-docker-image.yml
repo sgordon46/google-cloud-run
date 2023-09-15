@@ -21,8 +21,8 @@ jobs:
         id: 'gcp-auth'
         uses: 'google-github-actions/auth@v1'
         with:
-          workload_identity_provider: 'projects/Project1/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'google-cloud-run@project1-366201.iam.gserviceaccount.com'
+          workload_identity_provider: 'projects/917516087101/locations/global/workloadIdentityPools/sample-google-cloud-run/providers/sample-google-cloud-run-provider'
+          service_account: 'sample-google-cloud-run@project1-366201.iam.gserviceaccount.com'
          
       - name: 'Create Repo in Artifact Registry'
         run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet 
