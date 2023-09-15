@@ -6,19 +6,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content
+
+
       - id: 'auth'
-        uses: 'google-github-actions/auth@v1'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
         with:
-          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+          workload_identity_provider: 'projects/project1-366201/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'google-cloud-run@project1-366201.iam.gserviceaccount.com'
   
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
 
       - name: 'Create Repo in Artifact Registry'
         run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet
-
-      - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content
 
 
       - name: Build docker Image
