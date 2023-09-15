@@ -12,10 +12,10 @@ payload = {
     'password': secret_key
 }
 
-print(payload)
 
 # Generate a Token for access to Prisma Cloud Compute.
-TOKEN = requests.post(console_url+"/api/v1/authenticate",json=payload).json()['token']
+TOKEN = requests.post(console_url+"/api/v1/authenticate",
+                      json=payload).json()['token']
 
 # Set Prisma Cloud Headers for Login with token
 pccHeaders = {
@@ -36,5 +36,6 @@ payload = {
 # print(payload)
 
 
-response = requests.post(console_url+"/api/v1/collections",headers=pccHeaders, json=payload)
+response = requests.post(console_url+"/api/v1/collections",
+                         headers=pccHeaders, json=payload)
 # print(response)
