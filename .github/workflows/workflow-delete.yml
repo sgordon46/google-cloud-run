@@ -13,6 +13,7 @@ jobs:
       PCC_API: ${{ secrets.PCC_API }}
       PCC_KEY: ${{ secrets.PCC_KEY }}
       PCC_SEC: ${{ secrets.PCC_SEC }}
+      service_account : "sample-google-cloud-run@project1-366201.iam.gserviceaccount.com"
 
     # Add "id-token" with the intended permissions.
     permissions:
@@ -46,7 +47,7 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           workload_identity_provider: 'projects/917516087101/locations/global/workloadIdentityPools/sample-google-cloud-run/providers/sample-google-cloud-run-provider'
-          service_account: 'sample-google-cloud-run@project1-366201.iam.gserviceaccount.com'
+          service_account: ${{service_account}}
 
       - name: Delete Service
         run: gcloud run services delete my-tomcat-2023 --region us-central1 --quiet

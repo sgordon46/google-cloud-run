@@ -43,7 +43,8 @@ app_policy["collections"][0]["description"] = application_name
 
 # print(app_policy)
 
-response = requests.get(console_url+"/api/v1/policies/runtime/app-embedded", headers=pccHeaders)
+response = requests.get(
+    console_url+"/api/v1/policies/runtime/app-embedded", headers=pccHeaders)
 
 original_policy = response.json()
 new_policy = original_policy
@@ -51,6 +52,7 @@ new_policy = original_policy
 # del new_policy["rules"][1]
 new_policy["rules"].append(app_policy)
 
-response = requests.put(console_url+"/api/v1/policies/runtime/app-embedded", headers=pccHeaders, json=new_policy)
+response = requests.put(
+    console_url+"/api/v1/policies/runtime/app-embedded", headers=pccHeaders, json=new_policy)
 
-print(response)
+# print(response)
