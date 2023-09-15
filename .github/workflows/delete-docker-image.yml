@@ -1,0 +1,36 @@
+name: "Docker-Image-Delete-Manual"
+
+#on: push
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout repo content
+        uses: actions/checkout@v3 # checkout the repository content
+
+
+      - name: 'Authenticate to Google Cloud'
+        id: 'gcp-auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: 'projects/917516087101/locations/global/workloadIdentityPools/sample-google-cloud-run/providers/sample-google-cloud-run-provider'
+          service_account: 'sample-google-cloud-run@project1-366201.iam.gserviceaccount.com'
+
+      - name: Delete Service
+        run: gcloud run services delete my-tomcat-2023 --region us-central1 
+
+      - name: 'Create Repo in Artifact Registry'
+        run: gcloud artifacts repositories delete my-tomcat-2023 --location us-central1 --quiet 
+  
+
+
+  
