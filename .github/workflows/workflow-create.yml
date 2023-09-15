@@ -3,11 +3,15 @@ name: "Workflow Create"
 on: push
 #on: workflow_dispatch
 
-env:
-  application_name: "my-tomcat-app-embedded"
 
 jobs:
   build:
+
+    env:
+      application_name: "my-tomcat-app-embedded"
+      PCC_API: ${{ secrets.PCC_API }}
+      PCC_KEY: ${{ secrets.PCC_KEY }}
+      PCC_SEC: ${{ secrets.PCC_SEC }}
 
     # Add "id-token" with the intended permissions.
     permissions:
