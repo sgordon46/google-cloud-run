@@ -1,7 +1,7 @@
 name: "Workflow Create"
 
-#on: push
-on: workflow_dispatch
+on: push
+#on: workflow_dispatch
 
 env:
   application_name: "my-tomcat-app-embedded"
