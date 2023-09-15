@@ -45,5 +45,5 @@ jobs:
         run: gcloud run deploy my-tomcat-2023 --region us-central1 --image=us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest  --concurrency 1 --allow-unauthenticated
 
       - name: Allow unauthenticated
-        run: gcloud run services add-iam-policy-binding my-tomcat-2023 --member="allUsers" --role="roles/run.invoker"
+        run: gcloud run services add-iam-policy-binding my-tomcat-2023 --member="allUsers" --role="roles/run.invoker" --region us-central1
   
