@@ -13,8 +13,7 @@ payload = {
 }
 
 # Generate a Token for access to Prisma Cloud Compute.
-TOKEN = requests.post(console_url+"/api/v1/authenticate",
-                      json=payload).json()['token']
+TOKEN = requests.post(console_url+"/api/v1/authenticate",json=payload).json()['token']
 
 # Set Prisma Cloud Headers for Login with token
 pccHeaders = {
@@ -33,5 +32,4 @@ payload = {
 }
 
 
-response = requests.delete(
-    console_url+"/api/v1/collections/"+application_name, headers=pccHeaders)
+response = requests.delete(console_url+"/api/v1/collections/"+application_name, headers=pccHeaders)
