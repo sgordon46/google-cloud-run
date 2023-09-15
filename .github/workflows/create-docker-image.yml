@@ -20,16 +20,15 @@ jobs:
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content
 
+
       - name: Build docker Image
-        run: |-
-          docker build -t us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest django_hl7_rest_api/.
+        run: docker build -t us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest django_hl7_rest_api/.
 
       - name: credential helper
       - run: gcloud auth configure-docker -q
 
       - name: Push docker image to Repo
-        run: |-
-          docker push us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest
+        run: docker push us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest
 
 
 
