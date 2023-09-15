@@ -44,7 +44,7 @@ curl -sSLk   -H "Authorization: Bearer ${token}" "${PCC_URL}/api/v1/defenders/ap
 
 #mv $DIR/Dockerfile $DIR/Dockerfile.orig
 
-unzip $DIR/app_embedded_embed_app-name.zip -d $DIR
+unzip -o $DIR/app_embedded_embed_app-name.zip -d $DIR
 
 
 #gcloud artifacts repositories create $REPO --location us-central1 --repository-format=docker --quiet #--async
