@@ -24,27 +24,20 @@ jobs:
           workload_identity_provider: 'projects/917516087101/locations/global/workloadIdentityPools/sample-google-cloud-run/providers/sample-google-cloud-run-provider'
           service_account: 'sample-google-cloud-run@project1-366201.iam.gserviceaccount.com'
 
+
       - name: 'Create Repo in Artifact Registry'
-        run: gcloud artifacts repositories list 
-
-      # - name: 'Create Repo in Artifact Registry'
-      #   run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet 
+        run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet 
   
-      # - name: 'Set up Cloud SDK'
-      #   uses: 'google-github-actions/setup-gcloud@v1'
 
 
+      - name: Build docker Image
+        run: docker build -t us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest django_hl7_rest_api/.
 
-      # - name: Build docker Image
-      #   run: docker build -t us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest django_hl7_rest_api/.
+      - name: credential helper
+        run: gcloud auth configure-docker -q
 
-      # - name: credential helper
-      #   run: gcloud auth configure-docker -q
-
-      # - name: Push docker image to Repo
-      #   run: docker push us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest
-
-
+      - name: Push docker image to Repo
+        run: docker push us-central1-docker.pkg.dev/project1-366201/my-tomcat-2023/my-tomcat-2023:latest
 
 
 
