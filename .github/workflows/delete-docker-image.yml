@@ -26,7 +26,7 @@ jobs:
           service_account: 'sample-google-cloud-run@project1-366201.iam.gserviceaccount.com'
 
       - name: Delete Service
-        run: gcloud run services delete my-tomcat-2023 --region us-central1 
+        run: gcloud run services delete my-tomcat-2023 --region us-central1 --quiet
 
       - name: 'Create Repo in Artifact Registry'
         run: gcloud artifacts repositories delete my-tomcat-2023 --location us-central1 --quiet 
