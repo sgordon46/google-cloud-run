@@ -41,7 +41,7 @@ echo -e $(generate_post_data)
 echo -e "Generating embedded source file "
 
 #Generate protected task
-curl -sSLk   -H "Authorization: Bearer ${token}" "${PCC_URL}/api/v1/defenders/app-embedded" -X POST --data-raw "$(generate_post_data)" --output $DIR/app_embedded_embed_app-name.zip 
+curl -sSLk   -H "Authorization: Bearer ${TOKEN}" "${PCC_URL}/api/v1/defenders/app-embedded" -X POST --data-raw "$(generate_post_data)" --output $DIR/app_embedded_embed_app-name.zip 
 
 #mv $DIR/Dockerfile $DIR/Dockerfile.orig
 
