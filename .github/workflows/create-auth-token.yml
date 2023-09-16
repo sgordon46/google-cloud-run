@@ -31,7 +31,7 @@ jobs:
           pip install -r policy/requirements.txt
 
       - name: execute py Collections Script 
-        run: python policy/token.py
+        run: python policy/create-token.py
 
       - name: Print token
         run: echo ${{ env.TOKEN}}
