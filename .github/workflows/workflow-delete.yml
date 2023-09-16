@@ -14,6 +14,7 @@ jobs:
       PCC_KEY: ${{ secrets.PCC_KEY }}
       PCC_SEC: ${{ secrets.PCC_SEC }}
       service_account : "sample-google-cloud-run@project1-366201.iam.gserviceaccount.com"
+      workload_identity_provider: "projects/917516087101/locations/global/workloadIdentityPools/sample-google-cloud-run/providers/sample-google-cloud-run-provider"
 
     # Add "id-token" with the intended permissions.
     permissions:
