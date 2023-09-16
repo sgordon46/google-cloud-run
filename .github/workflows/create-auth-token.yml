@@ -1,0 +1,38 @@
+name: "Create auth token"
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    env:
+          application_name: "embedded-my-tomcat-app"
+          PCC_API: ${{ secrets.PCC_API }}
+          PCC_KEY: ${{ secrets.PCC_KEY }}
+          PCC_SEC: ${{ secrets.PCC_SEC }}
+          service_account : "sample-google-cloud-run@project1-366201.iam.gserviceaccount.com"
+          workload_identity_provider: "projects/917516087101/locations/global/workloadIdentityPools/sample-google-cloud-run/providers/sample-google-cloud-run-provider"
+
+
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # install the python version needed
+
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r policy/requirements.txt
+
+      - name: execute py Collections Script 
+        run: python policy/token.py
+
+      - name: Print token
+        run: echo ${{ env.TOKEN}}
+
