@@ -20,6 +20,5 @@ TOKEN = requests.post(console_url+"/api/v1/authenticate",
 env_file = os.getenv('GITHUB_ENV')
 
 with open(env_file, "a") as myfile:
-    myfile.write("TOKEN="TOKEN)
+    myfile.write("TOKEN="+TOKEN)
 
-    
