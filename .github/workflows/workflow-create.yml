@@ -1,7 +1,7 @@
 name: "Workflow Create"
 
-#on: push
-on: workflow_dispatch
+on: push
+#on: workflow_dispatch
 
 
 jobs:
@@ -53,6 +53,9 @@ jobs:
       - name: 'Create Repo in Artifact Registry'
         run: gcloud artifacts repositories create my-tomcat-2023 --location us-central1 --repository-format=docker --quiet 
   
+      - name: Create Compute Login Token 
+        run: python policy/create-token.py      
+
       - name: execute sh Create Docker image
         run: ./create-docker-image.sh
 

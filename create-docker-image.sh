@@ -10,13 +10,14 @@ PCC_USER=$PCC_KEY
 PCC_PASS=$PCC_SEC
 PCC_URL=$PCC_API
 PCC_SAN="us-west1.cloud.twistlock.com"
+TOKEN=$TOKEN
 
 
 #This  command will generate an authorization token (Only valid for 1 hour)
-json_auth_data="$(printf '{ "username": "%s", "password": "%s" }' "${PCC_USER}" "${PCC_PASS}")"
-token=$(curl -sSLk -d "$json_auth_data" -H 'content-type: application/json' "$PCC_URL/api/v1/authenticate" | python3 -c 'import sys, json; print(json.load(sys.stdin)["token"])')
+# json_auth_data="$(printf '{ "username": "%s", "password": "%s" }' "${PCC_USER}" "${PCC_PASS}")"
+# token=$(curl -sSLk -d "$json_auth_data" -H 'content-type: application/json' "$PCC_URL/api/v1/authenticate" | python3 -c 'import sys, json; print(json.load(sys.stdin)["token"])')
 
-echo -e $token
+# echo -e $token
 
 #The following variables can be set to customize the embedded function 
 DATA="/data"
