@@ -64,7 +64,7 @@ jobs:
         run: ./create-docker-image.sh
 
       - name: Build docker Image
-        run: docker build -t ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}'/tomcat-hl7:latest django_hl7_rest_api/.
+        run: docker build -t ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest django_hl7_rest_api/.
 
       - name: credential helper
         run: gcloud auth configure-docker ${{env.region}}-docker.pkg.dev
