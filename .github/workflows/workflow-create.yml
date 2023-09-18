@@ -75,7 +75,7 @@ jobs:
         run: docker push ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest
 
       - name: Deploy image to Google Cloud Run
-        run: gcloud run deploy ${{env.application_name}}' --region ${{env.region}} --image=${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest  --concurrency 1 --allow-unauthenticated
+        run: gcloud run deploy ${{env.application_name}} --region ${{env.region}} --image=${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest  --concurrency 1 --allow-unauthenticated
 
       - name: Allow unauthenticated
         run: gcloud run services add-iam-policy-binding ${{env.application_name}} --member="allUsers" --role="roles/run.invoker" --region ${{env.region}}
