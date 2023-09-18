@@ -9,6 +9,8 @@ jobs:
   build:
 
     env:
+      gcp_project: "project1-366201"
+      region: "us-central1"
       application_name: "embedded-my-tomcat-app"
       PCC_API: ${{ secrets.PCC_API }}
       PCC_KEY: ${{ secrets.PCC_KEY }}
@@ -51,10 +53,10 @@ jobs:
           service_account: '${{env.service_account}}'
 
       - name: Delete Service
-        run: gcloud run services delete my-tomcat-2023 --region us-central1 --quiet
+        run: gcloud run services delete ${{env.application_name}} --region ${{env.region}} --quiet
 
       - name: 'Create Repo in Artifact Registry'
-        run: gcloud artifacts repositories delete my-tomcat-2023 --location us-central1 --quiet 
+        run: gcloud artifacts repositories delete ${{env.application_name}} --location ${{env.region}} --quiet 
   
 
 
