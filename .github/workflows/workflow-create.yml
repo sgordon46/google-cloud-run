@@ -70,8 +70,7 @@ jobs:
         run: gcloud auth configure-docker ${{env.region}}-docker.pkg.dev
 
       - name: Push docker image to Repo
-        run: docker push ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}'/tomcat-hl7:latest
-
+        run: docker push ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest
 
       - name: Deploy image to Google Cloud Run
         run: gcloud run deploy ${{env.application_name}}' --region ${{env.region}} --image=${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}'/tomcat-hl7:latest  --concurrency 1 --allow-unauthenticated

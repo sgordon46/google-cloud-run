@@ -41,9 +41,11 @@ jobs:
 
       - name: execute py Policy Script 
         run: python policy/delete-policy.py
+        continue-on-error: true
 
       - name: execute py Collections Script 
         run: python policy/delete-collection.py
+        continue-on-error: true
 
       - name: 'Authenticate to Google Cloud'
         id: 'gcp-auth'
@@ -54,9 +56,11 @@ jobs:
 
       - name: Delete Service
         run: gcloud run services delete ${{env.application_name}} --region ${{env.region}} --quiet
+        continue-on-error: true
 
       - name: 'Create Repo in Artifact Registry'
         run: gcloud artifacts repositories delete ${{env.application_name}} --location ${{env.region}} --quiet 
+        continue-on-error: true
   
 
 
