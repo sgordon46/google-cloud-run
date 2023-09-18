@@ -1,15 +1,14 @@
 #!/bin/bash
 
-REPO=my-tomcat-2023
-IMAGE=my-tomcat-image-2023
+
 DIR=django_hl7_rest_api
-APPID=my-tomcat-app-embedded
+APPID=$application_name
 
+#PCC_USER=$PCC_KEY
+#PCC_PASS=$PCC_SEC
 
-PCC_USER=$PCC_KEY
-PCC_PASS=$PCC_SEC
 PCC_URL=$PCC_API
-PCC_SAN="us-west1.cloud.twistlock.com"
+PCC_SAN=$PCC_SAN
 TOKEN=$TOKEN
 
 
