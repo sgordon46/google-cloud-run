@@ -1,21 +1,24 @@
 import requests
 import os
 
-console_url = os.environ['PCC_API']
-access_key = os.environ['PCC_KEY']
-secret_key = os.environ['PCC_SEC']
+TOKEN = os.environ['TOKEN']
+
+
+# console_url = os.environ['PCC_API']
+# access_key = os.environ['PCC_KEY']
+# secret_key = os.environ['PCC_SEC']
 
 application_name = os.environ['application_name']
 
-payload = {
-    'username': access_key,
-    'password': secret_key
-}
+# payload = {
+#     'username': access_key,
+#     'password': secret_key
+# }
 
 
-# Generate a Token for access to Prisma Cloud Compute.
-TOKEN = requests.post(console_url+'/api/v1/authenticate',
-                      json=payload).json()['token']
+# # Generate a Token for access to Prisma Cloud Compute.
+# TOKEN = requests.post(console_url+'/api/v1/authenticate',
+#                       json=payload).json()['token']
 
 # Set Prisma Cloud Headers for Login with token
 pccHeaders = {
