@@ -1,8 +1,10 @@
 name: "Workflow Create"
 
-#on: push
-on: workflow_dispatch
-
+#on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
