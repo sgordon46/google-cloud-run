@@ -55,7 +55,7 @@ jobs:
 
 
       - name: 'Create Repo in Artifact Registry'
-        run: gcloud artifacts repositories create ${{env.application_name}}' --location ${{env.region}} --repository-format=docker --quiet 
+        run: gcloud artifacts repositories create ${{env.application_name}} --location ${{env.region}} --repository-format=docker --quiet 
   
       - name: Create Compute Login Token 
         run: python policy/create-token.py      
@@ -77,5 +77,5 @@ jobs:
         run: gcloud run deploy ${{env.application_name}}' --region ${{env.region}} --image=${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}'/tomcat-hl7:latest  --concurrency 1 --allow-unauthenticated
 
       - name: Allow unauthenticated
-        run: gcloud run services add-iam-policy-binding ${{env.application_name}}' --member="allUsers" --role="roles/run.invoker" --region ${{env.region}}
+        run: gcloud run services add-iam-policy-binding ${{env.application_name}} --member="allUsers" --role="roles/run.invoker" --region ${{env.region}}
   
