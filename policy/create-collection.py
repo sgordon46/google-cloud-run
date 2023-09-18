@@ -3,7 +3,7 @@ import os
 
 TOKEN = os.environ['TOKEN']
 
-# console_url = os.environ['PCC_API']
+console_url = os.environ['PCC_API']
 # access_key = os.environ['PCC_KEY']
 # secret_key = os.environ['PCC_SEC']
 
