@@ -4,8 +4,8 @@ REPO=my-tomcat-2023
 IMAGE=my-tomcat-image-2023
 DIR=django_hl7_rest_api
 
-PCC_USER="f0f68363-a032-47e4-88d7-055a7e5b819d"
-PCC_PASS="HZ8uaAjrvy76jUzN3QB1TIi2eVk="
+PCC_USER=""
+PCC_PASS=""
 PCC_URL="https://us-west1.cloud.twistlock.com/us-4-161024557"
 PCC_SAN="us-west1.cloud.twistlock.com"
 
