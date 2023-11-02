@@ -1,4 +1,4 @@
-name: cURL action to invoke attacker
+name: Switch Policy to Prevent
 
 on: workflow_dispatch
     #push:
