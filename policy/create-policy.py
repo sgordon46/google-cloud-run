@@ -53,7 +53,8 @@ original_policy = response.json()
 new_policy = original_policy
 
 # del new_policy["rules"][1]
-new_policy["rules"].append(app_policy)
+# insert policy as the first option in the list
+new_policy["rules"].insert(0,app_policy)
 
 response = requests.put(
     console_url+"/api/v1/policies/runtime/app-embedded", headers=pccHeaders, json=new_policy)
