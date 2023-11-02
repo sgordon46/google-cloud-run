@@ -29,10 +29,10 @@ Google Cloud Platform also provides keyless authentication and some of my notes 
 - Navigate to the Github actions tab in the specific repo
   - Select the "Create Application" workflow
   - Choose "Run Workflow"
-- [This workflow](.github/workflows/workflow-create.yml) will automate all the necessary steps to deploy this application with security.  Once this is compplete, move to the next steps of testing. 
+- [This workflow](.github/workflows/workflow-create.yml) will automate all the necessary steps to deploy this application with security.  Once this is complete, move to the next steps of testing. 
 - Navigate to the [Google Cloud Run interface](https://console.cloud.google.com/run)
-  - Find this newly created application from the above worklow
-  - Similar to https://{application name}-tc6llqn2zq-uc.a.run.app
+  - Find this newly created application from the above workflow
+  - Similar to https://{application name}-{unique identifier}-uc.a.run.app
 
 ![The Google Cloud Run Interface](images/image.png)
 
@@ -54,14 +54,14 @@ Google Cloud Platform also provides keyless authentication and some of my notes 
 - This will properly submit the form and give a result back in json form. 
 - To run the attack, modify the URL to replace the form data with something that is non HL7 as seen below.  You are need to adjust the format to none.  See example below.
   - ```ls -la```
-  - ```cat /etc/shawdow```
+  - ```cat /etc/shadow```
   - ```whoami```
 
-- https://{application name}-tc6llqn2zq-uc.a.run.app/hl7?data=ls%20-la&format=none
+- https://{application name}-{unique identifier}-uc.a.run.app/hl7?data=ls%20-la&format=none
 
 ![Directory output from an attacker view](images/image4.png)
 
-- As you can see in this output, we pass in the ```ls -la``` command, in Linux this will output the directory structure of the current directory. This command may be harmless, but an attacker could take advantage of this opening and run commands that are more threatning. 
+- As you can see in this output, we pass in the ```ls -la``` command, in Linux this will output the directory structure of the current directory. This command may be harmless, but an attacker could take advantage of this opening and run commands that are more threatening. 
 
 - As you look in the Console under events, you will see some audit for **App-Embedded audits**
 
