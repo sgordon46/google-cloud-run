@@ -1,5 +1,4 @@
 import requests
-import json
 import os
 
 console_url = os.environ['PCC_API']

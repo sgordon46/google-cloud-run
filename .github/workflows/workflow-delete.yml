@@ -1,8 +1,7 @@
-name: "Workflow Delete"
+name: "Delete Application"
 
 #on: push
 on: workflow_dispatch
-
 
 
 jobs:
@@ -26,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: checkout repo content
+      - name: Checkout Content from Repo
         uses: actions/checkout@v3 # checkout the repository content
 
       - name: setup python
@@ -39,29 +38,29 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r policy/requirements.txt
 
-      - name: Create Compute Login Token 
+      - name: Generate Compute Login Token 
         run: python policy/create-token.py 
 
-      - name: Delete policy with python
+      - name: Delete Compute App-Embedded Runtime Policy for Application
         run: python policy/delete-policy.py
         continue-on-error: true
 
-      - name: Delete collection with python
+      - name: Delete Compute Collection for Application
         run: python policy/delete-collection.py
         continue-on-error: true
 
-      - name: Authenticate to Google Cloud
+      - name: Authenticate to Google Cloud for Deployment
         id: 'gcp-auth'
         uses: 'google-github-actions/auth@v1'
         with:
           workload_identity_provider: '${{env.workload_identity_provider}}'
           service_account: '${{env.service_account}}'
 
-      - name: Delete Google Run Service Definition
+      - name: Delete application on Google-Cloud-Run
         run: gcloud run services delete ${{env.application_name}} --region ${{env.region}} --quiet
         continue-on-error: true
 
-      - name: Delete Google Artifact Repository
+      - name: Delete Application from Google Artifact Repository
         run: gcloud artifacts repositories delete ${{env.application_name}} --location ${{env.region}} --quiet 
         continue-on-error: true
   

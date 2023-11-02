@@ -1,4 +1,4 @@
-name: "Workflow Create"
+name: "Deploy Application"
 
 on: workflow_dispatch
 # on:
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: checkout repo content
+      - name: Checkout Content from Repo
         uses: actions/checkout@v3 # checkout the repository content
 
       - name: setup python
@@ -41,43 +41,40 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r policy/requirements.txt
 
-      - name: Create Compute Login Token 
+      - name: Generate Compute Login Token 
         run: python policy/create-token.py 
 
-      - name: execute py Collections Script 
+      - name: Create Compute Collection for Application 
         run: python policy/create-collection.py
 
-      - name: execute py Policy Script 
+      - name: Create Compute App-Embedded Runtime Policy for Application
         run: python policy/create-policy.py
 
-      - name: 'Authenticate to Google Cloud'
+      - name: Authenticate to Google Cloud for Deployment
         id: 'gcp-auth'
         uses: 'google-github-actions/auth@v1'
         with:
           workload_identity_provider: '${{env.workload_identity_provider}}'
           service_account: '${{env.service_account}}'
 
-
-      - name: 'Create Repo in Artifact Registry'
+      - name: Create Repo in Artifact Repository
         run: gcloud artifacts repositories create ${{env.application_name}} --location ${{env.region}} --repository-format=docker --quiet 
   
-     
+      - name: Embed Defender into Dockerfile
+        run: ./embed-defender.sh
 
-      - name: execute sh Create Docker image
-        run: ./create-docker-image.sh
-
-      - name: Build docker Image
+      - name: Build docker image from source including Defender
         run: docker build -t ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest django_hl7_rest_api/.
 
-      - name: credential helper
+      - name: Use Google credentilals to autauthenticatate to Artifact Repository 
         run: gcloud auth configure-docker ${{env.region}}-docker.pkg.dev
 
       - name: Push docker image to Repo
         run: docker push ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest
 
-      - name: Deploy image to Google Cloud Run
+      - name: Deploy application to Google-Cloud-Run
         run: gcloud run deploy ${{env.application_name}} --region ${{env.region}} --image=${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest  --concurrency 1 --allow-unauthenticated
 
-      - name: Allow unauthenticated
+      - name: Update IAM policy for application invocation. 
         run: gcloud run services add-iam-policy-binding ${{env.application_name}} --member="allUsers" --role="roles/run.invoker" --region ${{env.region}}
   
