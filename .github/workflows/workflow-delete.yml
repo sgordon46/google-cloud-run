@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 
 jobs:
-  build:
+  Destroy:
 
     env:
       gcp_project: "project1-366201"
