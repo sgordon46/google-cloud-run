@@ -1,0 +1,64 @@
+{
+  "name": "my-tomcat-app-embedded",
+  "previousName": "",
+  "collections": [
+    {
+      "images": [
+        "*"
+      ],
+      "containers": [
+        "*"
+      ],
+      "appIDs": [
+        "my-tomcat-app-embedded*"
+      ],
+      "name": "my-tomcat-app-embedded",
+      "description": "my-tomcat-app-embedded",
+      "system": false,
+      "prisma": false
+    }
+  ],
+  "advancedProtection": true,
+  "processes": {
+    "effect": "prevent",
+    "blacklist": [],
+    "whitelist": [
+      "/usr/local/bin/python3.9",
+      "/usr/bin/uname",
+      "/usr/bin/file"
+    ],
+    "checkCryptoMiners": true,
+    "checkNewBinaries": true
+  },
+  "network": {
+    "effect": "alert",
+    "blacklistIPs": [],
+    "blacklistListeningPorts": [],
+    "whitelistListeningPorts": [
+      {
+        "start": 8080,
+        "end": 8080,
+        "deny": false
+      }
+    ],
+    "blacklistOutboundPorts": [],
+    "whitelistOutboundPorts": [],
+    "whitelistIPs": []
+  },
+  "dns": {
+    "effect": "alert",
+    "blacklist": [],
+    "whitelist": []
+  },
+  "filesystem": {
+    "effect": "disable",
+    "blacklist": [],
+    "whitelist": [],
+    "checkNewFiles": true,
+    "backdoorFiles": true,
+    "skipEncryptedBinaries": false,
+    "suspiciousELFHeaders": true
+  },
+  "wildFireAnalysis": "alert",
+  "policyType": "appEmbeddedRuntime"
+}
