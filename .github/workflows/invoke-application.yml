@@ -1,4 +1,4 @@
-name: Example of cURL action
+name: cURL action to invoke attacker
 
 on: 
     push:
@@ -15,7 +15,9 @@ jobs:
         with:
           url: https://embedded-my-tomcat-app-tc6llqn2zq-uc.a.run.app/hl7?data=ls%20-la&format=none
           method: "GET"
-          accept: 200,500
+          accept: 
+            200
+            500
          
           log-response: true
 
