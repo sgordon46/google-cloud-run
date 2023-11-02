@@ -1,10 +1,9 @@
 name: "Create Application"
 
-on: workflow_dispatch
-# on:
-#   push:
-#     branches:
-#       - main
+on: 
+  schedule:
+    - cron: '10 13 * * 1-5'
+  workflow_dispatch:
 
 jobs:
   Create:
