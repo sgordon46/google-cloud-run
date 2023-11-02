@@ -1,4 +1,4 @@
-name: "Deploy Application"
+name: "Create Application"
 
 on: workflow_dispatch
 # on:
@@ -7,7 +7,7 @@ on: workflow_dispatch
 #       - main
 
 jobs:
-  Deploy:
+  Create:
 
     env:
       gcp_project: "project1-366201"
