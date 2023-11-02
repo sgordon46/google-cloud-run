@@ -3,6 +3,8 @@ name: cURL action to invoke attacker
 on: 
     push:
     workflow_dispatch:
+    schedule:
+      - cron: '15 13-21 * * 1-5'
 
 jobs:
   test-curl-action:
