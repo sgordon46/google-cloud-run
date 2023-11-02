@@ -6,8 +6,8 @@ DIR=django_hl7_rest_api
 
 PCC_USER=""
 PCC_PASS=""
-PCC_URL="https://us-west1.cloud.twistlock.com/us-4-161024557"
-PCC_SAN="us-west1.cloud.twistlock.com"
+PCC_URL=""
+PCC_SAN=""
 
 
 #This  command will generate an authorization token (Only valid for 1 hour)
