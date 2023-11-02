@@ -73,7 +73,7 @@ jobs:
         run: docker push ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest
 
       - name: Deploy application to Google-Cloud-Run
-        run: gcloud run deploy ${{env.application_name}} --region ${{env.region}} --image=${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest  --concurrency 1 --allow-unauthenticated --port 5000
+        run: gcloud run deploy ${{env.application_name}} --region ${{env.region}} --image=${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest  --concurrency 1 --allow-unauthenticated --port 8080
 
       - name: Update IAM policy for application invocation. 
         run: gcloud run services add-iam-policy-binding ${{env.application_name}} --member="allUsers" --role="roles/run.invoker" --region ${{env.region}}
