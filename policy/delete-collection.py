@@ -21,6 +21,5 @@ payload = {
 
 }
 
-
 response = requests.delete(
     console_url+'/api/v1/collections/'+application_name, headers=pccHeaders)
