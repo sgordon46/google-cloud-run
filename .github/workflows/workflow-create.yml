@@ -47,7 +47,7 @@ jobs:
         run: python policy/create-collection.py
 
       - name: Create Compute App-Embedded Runtime Policy for Application
-        run: python policy/create-policy.py
+        run: SCRIPT=alert python policy/create-policy.py
 
       - name: Authenticate to Google Cloud for Deployment
         id: 'gcp-auth'

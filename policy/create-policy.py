@@ -5,6 +5,7 @@ import os
 TOKEN = os.environ['TOKEN']
 console_url = os.environ['PCC_API']
 application_name = os.environ['application_name']
+SCRIPT = os.environ['SCRIPT']
 
 # Set Prisma Cloud Headers for Login with token
 pccHeaders = {
@@ -20,7 +21,7 @@ payload = {
 
 }
 
-f = open("policy/app-policy.json", "r")
+f = open("policy/app-policy-"+SCRIPT+".json", "r")
 app_policy = json.loads(f.read())
 f.close()
 
