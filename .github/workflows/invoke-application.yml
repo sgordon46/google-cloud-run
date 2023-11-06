@@ -8,9 +8,33 @@ on:
 
 jobs:
   test-curl-action:
+
+    env:
+      gcp_project: "project1-366201"
+      region: "us-central1"
+      application_name: "embedded-my-tomcat-app"
+      PCC_SAN: "us-west1.cloud.twistlock.com"
+      PCC_API: ${{ secrets.PCC_API }}
+      PCC_KEY: ${{ secrets.PCC_KEY }}
+      PCC_SEC: ${{ secrets.PCC_SEC }}
+      service_account : "sample-google-cloud-run@project1-366201.iam.gserviceaccount.com"
+      workload_identity_provider: "projects/917516087101/locations/global/wo
+
+
+      # Add "id-token" with the intended permissions.
+      permissions:
+        contents: 'read'
+        id-token: 'write'
+
     name: "Perform REST API"
     runs-on: ubuntu-latest
+
     steps:
+
+      - name: Update IAM policy for application invocation. 
+        un: gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)')
+
+
       - name: "Call API 1"
         uses: indiesdev/curl@v1.1
         id: api
@@ -20,6 +44,3 @@ jobs:
           accept: 200,500         
           log-response: true
 
-      - uses: actions/download-artifact@v3
-        with:
-          name: Cloud-Run-URL
