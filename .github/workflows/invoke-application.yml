@@ -48,4 +48,5 @@ jobs:
           method: "GET"
           accept: 200,500         
           log-response: true
+          timeout: 10000
 
