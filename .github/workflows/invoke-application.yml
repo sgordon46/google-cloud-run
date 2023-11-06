@@ -21,3 +21,8 @@ jobs:
           log-response: true
 
 
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Cloud-Run-URL
+          path: cloudRunUrl.txt
