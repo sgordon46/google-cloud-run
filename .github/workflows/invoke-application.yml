@@ -36,7 +36,7 @@ jobs:
           service_account: '${{env.service_account}}'
 
       - name: Update IAM policy for application invocation. 
-        run: gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)')
+        run: gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)'
 
 
       - name: "Call API 1"
