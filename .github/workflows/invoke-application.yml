@@ -20,11 +20,10 @@ jobs:
       service_account : "sample-google-cloud-run@project1-366201.iam.gserviceaccount.com"
       workload_identity_provider: "projects/917516087101/locations/global/workloadIdentityPools/sample-google-cloud-run/providers/sample-google-cloud-run-provider"
 
-
     # Add "id-token" with the intended permissions.
     permissions:
-       contents: 'read'
-       id-token: 'write'
+      contents: 'read'
+      id-token: 'write'
 
     name: "Perform REST API"
     runs-on: ubuntu-latest
