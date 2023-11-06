@@ -44,7 +44,7 @@ jobs:
         uses: indiesdev/curl@v1.1
         id: api
         with:
-          url: https://${{ steps.get-url.outputs.APP_URL }}/hl7?data=ls%20-la&format=none
+          url: ${{ steps.get-url.outputs.APP_URL }}/hl7?data=ls%20-la&format=none
           method: "GET"
           accept: 200,500         
           log-response: true
