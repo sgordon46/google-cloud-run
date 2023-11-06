@@ -30,24 +30,24 @@ jobs:
       - name: Checkout Content from Repo
         uses: actions/checkout@v3 # checkout the repository content
 
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10' # install the python version needed
+      # - name: setup python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.10' # install the python version needed
 
-      - name: install python packages
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r policy/requirements.txt
+      # - name: install python packages
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install -r policy/requirements.txt
 
-      - name: Generate Compute Login Token 
-        run: python policy/create-token.py 
+      # - name: Generate Compute Login Token 
+      #   run: python policy/create-token.py 
 
-      - name: Create Compute Collection for Application 
-        run: python policy/create-collection.py
+      # - name: Create Compute Collection for Application 
+      #   run: python policy/create-collection.py
 
-      - name: Create Compute App-Embedded Runtime Policy for Application (Alert)
-        run: SCRIPT=alert python policy/create-policy.py
+      # - name: Create Compute App-Embedded Runtime Policy for Application (Alert)
+      #   run: SCRIPT=alert python policy/create-policy.py
 
       - name: Authenticate to Google Cloud for Deployment
         id: 'gcp-auth'
@@ -56,24 +56,27 @@ jobs:
           workload_identity_provider: '${{env.workload_identity_provider}}'
           service_account: '${{env.service_account}}'
 
-      - name: Create Repo in Artifact Repository
-        run: gcloud artifacts repositories create ${{env.application_name}} --location ${{env.region}} --repository-format=docker --quiet 
+      # - name: Create Repo in Artifact Repository
+      #   run: gcloud artifacts repositories create ${{env.application_name}} --location ${{env.region}} --repository-format=docker --quiet 
   
-      - name: Embed Defender into Dockerfile
-        run: ./embed-defender.sh
+      # - name: Embed Defender into Dockerfile
+      #   run: ./embed-defender.sh
 
-      - name: Build docker image from source including Defender
-        run: docker build -t ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest django_hl7_rest_api/.
+      # - name: Build docker image from source including Defender
+      #   run: docker build -t ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest django_hl7_rest_api/.
 
-      - name: Use Google credentilals to autauthenticatate to Artifact Repository 
-        run: gcloud auth configure-docker ${{env.region}}-docker.pkg.dev
+      # - name: Use Google credentilals to autauthenticatate to Artifact Repository 
+      #   run: gcloud auth configure-docker ${{env.region}}-docker.pkg.dev
 
-      - name: Push docker image to Repo
-        run: docker push ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest
+      # - name: Push docker image to Repo
+      #   run: docker push ${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest
 
       - name: Deploy application to Google-Cloud-Run
+        id: deploy
         run: gcloud run deploy ${{env.application_name}} --region ${{env.region}} --image=${{env.region}}-docker.pkg.dev/${{env.gcp_project}}/${{env.application_name}}/tomcat-hl7:latest  --concurrency 1 --allow-unauthenticated --port 8080
 
       - name: Update IAM policy for application invocation. 
         run: gcloud run services add-iam-policy-binding ${{env.application_name}} --member="allUsers" --role="roles/run.invoker" --region ${{env.region}}
   
+      - name: 'Use output'
+        run: 'echo "${{ steps.deploy.outputs }}"'
