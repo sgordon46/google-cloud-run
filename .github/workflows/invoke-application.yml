@@ -25,9 +25,7 @@ jobs:
       contents: 'read'
       id-token: 'write'
 
-    name: "Perform REST API"
     runs-on: ubuntu-latest
-
     steps:
 
       - name: Authenticate to Google Cloud for Deployment
@@ -38,7 +36,7 @@ jobs:
           service_account: '${{env.service_account}}'
 
       - name: Update IAM policy for application invocation. 
-        un: gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)')
+        run: gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)')
 
 
       - name: "Call API 1"
