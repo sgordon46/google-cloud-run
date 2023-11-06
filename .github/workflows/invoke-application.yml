@@ -36,14 +36,14 @@ jobs:
           service_account: '${{env.service_account}}'
 
       - name: Update IAM policy for application invocation. 
-        run: gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)'
+        run: echo "APP_URL=$(gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)'" >> $GITHUB_OUTPUT
 
 
       - name: "Call API 1"
         uses: indiesdev/curl@v1.1
         id: api
         with:
-          url: https://embedded-my-tomcat-app-tc6llqn2zq-uc.a.run.app/hl7?data=ls%20-la&format=none
+          url: https://${{APP_URL}}/hl7?data=ls%20-la&format=none
           method: "GET"
           accept: 200,500         
           log-response: true
