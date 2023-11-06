@@ -20,12 +20,6 @@ jobs:
           accept: 200,500         
           log-response: true
 
-      #- run: echo 'Service URL: https://embedded-my-tomcat-app-tc6llqn2zq-uc.a.run.app' | cut -d' ' -f3 > cloudRunUrl.txt
-      
-      - name: 'Use output'
-        run: 'echo "${{ steps.deploy.outputs.url }}"'
-
-      - uses: actions/upload-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: Cloud-Run-URL
-          path: cloudRunUrl.txt

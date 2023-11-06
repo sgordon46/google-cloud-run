@@ -78,5 +78,10 @@ jobs:
       - name: Update IAM policy for application invocation. 
         run: gcloud run services add-iam-policy-binding ${{env.application_name}} --member="allUsers" --role="roles/run.invoker" --region ${{env.region}}
   
-      - name: 'Use output'
-        run: 'echo "${{ steps.deploy.outputs }}"'
+      - name: Update IAM policy for application invocation. 
+        run: echo "$(gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)')" > cloudRunUrl.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Cloud-Run-URL
+          path: cloudRunUrl.txt
