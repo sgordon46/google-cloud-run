@@ -29,26 +29,26 @@ jobs:
       - name: Checkout Content from Repo
         uses: actions/checkout@v3 # checkout the repository content
 
-      # - name: setup python
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: '3.10' # install the python version needed
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # install the python version needed
 
-      # - name: install python packages for 
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install -r policy/requirements.txt
+      - name: install python packages for 
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r policy/requirements.txt
 
-      # - name: Generate Compute Login Token 
-      #   run: python policy/create-token.py 
+      - name: Generate Compute Login Token 
+        run: python policy/create-token.py 
 
-      # - name: Delete Compute App-Embedded Runtime Policy for Application
-      #   run: python policy/delete-policy.py
-      #   continue-on-error: true
+      - name: Delete Compute App-Embedded Runtime Policy for Application
+        run: python policy/delete-policy.py
+        continue-on-error: true
 
-      # - name: Delete Compute Collection for Application
-      #   run: python policy/delete-collection.py
-      #   continue-on-error: true
+      - name: Delete Compute Collection for Application
+        run: python policy/delete-collection.py
+        continue-on-error: true
 
       - name: Authenticate to Google Cloud for Deployment
         id: 'gcp-auth'
@@ -61,10 +61,6 @@ jobs:
         run: gcloud run services delete ${{env.application_name}} --region ${{env.region}} --quiet
         continue-on-error: true
 
-      # - name: Delete Application from Google Artifact Repository
-      #   run: gcloud artifacts repositories delete ${{env.application_name}} --location ${{env.region}} --quiet 
-      #   continue-on-error: true
-  
-
-
-  
+      - name: Delete Application from Google Artifact Repository
+        run: gcloud artifacts repositories delete ${{env.application_name}} --location ${{env.region}} --quiet 
+        continue-on-error: true

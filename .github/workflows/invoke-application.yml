@@ -40,7 +40,7 @@ jobs:
         run: echo "APP_URL=$(gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)')" >> $GITHUB_OUTPUT
 
 
-      - name: "Call API 1"
+      - name: "Curl to Application with evil data"
         uses: indiesdev/curl@v1.1
         id: api
         with:
