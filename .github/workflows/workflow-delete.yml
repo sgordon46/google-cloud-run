@@ -64,7 +64,3 @@ jobs:
       - name: Delete Application from Google Artifact Repository
         run: gcloud artifacts repositories delete ${{env.application_name}} --location ${{env.region}} --quiet 
         continue-on-error: true
-  
-
-
-  

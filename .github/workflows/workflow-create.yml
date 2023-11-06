@@ -76,4 +76,4 @@ jobs:
 
       - name: Update IAM policy for application invocation. 
         run: gcloud run services add-iam-policy-binding ${{env.application_name}} --member="allUsers" --role="roles/run.invoker" --region ${{env.region}}
-  
+

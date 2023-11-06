@@ -8,21 +8,45 @@ on:
 
 jobs:
   test-curl-action:
-    name: "Perform REST API"
+
+    env:
+      gcp_project: "project1-366201"
+      region: "us-central1"
+      application_name: "embedded-my-tomcat-app"
+      PCC_SAN: "us-west1.cloud.twistlock.com"
+      PCC_API: ${{ secrets.PCC_API }}
+      PCC_KEY: ${{ secrets.PCC_KEY }}
+      PCC_SEC: ${{ secrets.PCC_SEC }}
+      service_account : "sample-google-cloud-run@project1-366201.iam.gserviceaccount.com"
+      workload_identity_provider: "projects/917516087101/locations/global/workloadIdentityPools/sample-google-cloud-run/providers/sample-google-cloud-run-provider"
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     runs-on: ubuntu-latest
     steps:
-      - name: "Call API 1"
+
+      - name: Authenticate to Google Cloud for Deployment
+        id: 'gcp-auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: '${{env.workload_identity_provider}}'
+          service_account: '${{env.service_account}}'
+
+      - name: Update IAM policy for application invocation. 
+        id: get-url
+        run: echo "APP_URL=$(gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)')" >> $GITHUB_OUTPUT
+
+
+      - name: "Curl to Application with evil data"
         uses: indiesdev/curl@v1.1
         id: api
         with:
-          url: https://embedded-my-tomcat-app-tc6llqn2zq-uc.a.run.app/hl7?data=ls%20-la&format=none
+          url: ${{ steps.get-url.outputs.APP_URL }}/hl7?data=ls%20-la&format=none
           method: "GET"
           accept: 200,500         
           log-response: true
+          timeout: 10000
 
-
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Cloud-Run-URL
-          path: cloudRunUrl.txt
