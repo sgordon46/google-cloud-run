@@ -37,7 +37,7 @@ jobs:
 
       - name: Update IAM policy for application invocation. 
         id: get-url
-        run: echo "APP_URL=$(gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)'" >> $GITHUB_OUTPUT
+        run: echo "APP_URL=$(gcloud run services describe ${{env.application_name}}  --region ${{env.region}} --format='value(status.url)')" >> $GITHUB_OUTPUT
 
 
       - name: "Call API 1"
