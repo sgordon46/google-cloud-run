@@ -12,7 +12,7 @@ jobs:
       gcp_project: "project1-366201"
       region: "us-central1"
       application_name: "embedded-my-tomcat-app"
-      PCC_SAN: "us-west1.cloud.twistlock.com"
+      PCC_SAN: "app0.cloud.twistlock.com"
       PCC_API: ${{ secrets.PCC_API }}
       PCC_KEY: ${{ secrets.PCC_KEY }}
       PCC_SEC: ${{ secrets.PCC_SEC }}
