@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		postgresql-client \
+		postgresql-client python3 \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /tmp
