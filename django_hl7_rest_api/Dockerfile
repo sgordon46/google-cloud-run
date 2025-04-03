@@ -1,9 +1,9 @@
-FROM debian:bullseye
+FROM python:3.9-buster
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		postgresql-client python3 python3-pip \
-	&& rm -rf /var/lib/apt/lists/*
+		postgresql-client 
+	
 
 COPY entrypoint.sh /tmp
 RUN ["chmod", "+x", "/tmp/entrypoint.sh"]
