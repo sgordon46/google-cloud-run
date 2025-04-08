@@ -2,7 +2,7 @@ FROM python:3.11-alpine
 
 #RUN apt-get update && apt-get install -y --no-install-recommends postgresql-client 
 RUN apk update
-RUN apk add postgresql-client 
+RUN apk add postgresql-client gcc p3-dev musl-dev linux-headers
 
 COPY entrypoint.sh /tmp
 RUN ["chmod", "+x", "/tmp/entrypoint.sh"]
