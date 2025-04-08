@@ -1,7 +1,8 @@
 FROM python:3.9-alpine
 
 #RUN apt-get update && apt-get install -y --no-install-recommends postgresql-client 
-RUN apt-get install -y --no-install-recommends postgresql-client 
+RUN apk update
+RUN apk install -y --no-install-recommends postgresql-client 
 
 COPY entrypoint.sh /tmp
 RUN ["chmod", "+x", "/tmp/entrypoint.sh"]
